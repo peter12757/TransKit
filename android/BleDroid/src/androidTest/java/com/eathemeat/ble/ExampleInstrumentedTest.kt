@@ -1,4 +1,4 @@
-package com.eathemeat.mylibrary
+package com.eathemeat.ble
 
 import android.support.test.InstrumentationRegistry
 import android.support.test.runner.AndroidJUnit4

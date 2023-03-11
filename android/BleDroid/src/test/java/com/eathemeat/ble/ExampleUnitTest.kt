@@ -1,4 +1,4 @@
-package com.eathemeat.mylibrary
+package com.eathemeat.ble
 
 import org.junit.Test
 
