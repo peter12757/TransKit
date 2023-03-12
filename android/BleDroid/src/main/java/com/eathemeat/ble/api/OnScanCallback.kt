@@ -15,7 +15,7 @@ interface OnScanCallback {
     fun onScan(devices: List<BleDevice>?): Unit
 
     /**
-     *扫描完成，返回设备
+     * 扫描完成，返回设备
      */
     fun onScanComplete(devices:List<BleDevice>):Unit
 

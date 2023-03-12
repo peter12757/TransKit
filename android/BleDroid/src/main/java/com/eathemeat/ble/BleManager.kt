@@ -105,6 +105,15 @@ class BleManager() {
 
     }
 
+    fun connect() :Unit {
+
+    }
+
+    fun  disconnect():Unit {
+
+    }
+
+
 
     /**
      * stopScan
