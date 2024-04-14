@@ -1,4 +1,4 @@
-package com.eathemeat.transkit.ui.theme
+package com.eathemeat.transkit.ui.main.theme
 
 import android.app.Activity
 import android.os.Build

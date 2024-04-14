@@ -1,4 +1,4 @@
-package com.eathemeat.transkit.ui.theme
+package com.eathemeat.transkit.ui.main.theme
 
 import androidx.compose.material3.Typography
 import androidx.compose.ui.text.TextStyle
