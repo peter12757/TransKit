@@ -5,7 +5,7 @@ plugins {
 
 android {
     namespace = "com.eathemeat.transkit"
-    compileSdk = 33
+    compileSdk = 34
 
     defaultConfig {
         applicationId = "com.eathemeat.transkit"
