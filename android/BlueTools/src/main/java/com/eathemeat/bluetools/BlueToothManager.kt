@@ -1,59 +1,104 @@
 package com.eathemeat.bluetools
 
 import android.annotation.SuppressLint
+import android.app.Application
 import android.bluetooth.BluetoothAdapter
-import android.bluetooth.BluetoothDevice
 import android.bluetooth.BluetoothManager
-import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.os.Build
-import android.util.Log
-import androidx.annotation.RequiresApi
+import androidx.core.app.ActivityCompat.startActivityForResult
+
 
 /**
  * author:PeterX
  * time:2024/5/5 0005
  */
-const val TAG = "BlueToothManager"
+@SuppressLint("MissingPermission")
+object BlueToothManager {
 
-class BlueToothManager(val context:Context) {
+    val TAG = "BlueToothManager"
+    lateinit var appContext: Application
 
-    val blueToothManager = context.getSystemService(Context.BLUETOOTH_SERVICE) as BluetoothManager
-    var  blueToothAdapter: BluetoothAdapter?
-
-    val receiver = object :BroadcastReceiver() {
-
-        @SuppressLint("MissingPermission")
-        @RequiresApi(Build.VERSION_CODES.TIRAMISU)
-        override fun onReceive(p0: Context, p1: Intent) {
-            val action:String? = p1.action
-            when(action) {
-                BluetoothDevice.ACTION_FOUND ->{
-                    val device: BluetoothDevice? = p1.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE,BluetoothDevice::class.java)
-                    device?.let {
-                        val devicesName = device.name
-                        val deviceHAddress = device.address
-                        val deviceAlias = device.alias
-                    }
+    val blueToothManager by lazy {
+        if (isDevicesSupport()) {
+            appContext.getSystemService(Context.BLUETOOTH_SERVICE) as BluetoothManager
+        } else
+            null
+    }
 
 
-                }
-            }
+    val  blueToothAdapter by lazy {
+        blueToothManager?.adapter
+    }
+
+    val scanner by lazy {
+        blueToothAdapter?.let {
+            BlueToothScanner(appContext, it)
         }
     }
 
-    init {
-        blueToothAdapter = blueToothManager.adapter
-        if (blueToothAdapter == null) {
-            Log.e(TAG, "Device doesn't support Bluetooth: ", Throwable())
-        }
+    fun init(appCtx:Application) {
+        appContext = appCtx
+
     }
 
 
     fun isDevicesSupport(): Boolean {
         return blueToothAdapter == null
     }
+
+
+    fun enableBluetooth(): Boolean {
+        // For applications targeting Build.VERSION_CODES.TIRAMISU or above, this API will always fail and return false
+        blueToothAdapter?.let { adapter->
+            if (Build.VERSION_CODES.TIRAMISU > Build.VERSION.SDK_INT) {
+                return adapter.enable()
+            } else {
+                if (adapter.isEnabled) {
+                    val enableBtIntent = Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE)
+                    appContext.startActivity(enableBtIntent)
+//                    startActivityForResult(enableBtIntent, REQUEST_ENBLE_BT)
+                }
+            }
+        }
+        return false
+    }
+
+    fun disableBluetooth():Boolean {
+        // For applications targeting Build.VERSION_CODES.TIRAMISU or above, this API will always fail and return false
+        blueToothAdapter?.let { adapter->
+            if (Build.VERSION_CODES.TIRAMISU > Build.VERSION.SDK_INT) {
+                return adapter.disable()
+            } else {
+                if (adapter.isEnabled) {
+                    val enableBtIntent = Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE)
+                    appContext.startActivity(enableBtIntent)
+//                    startActivityForResult(enableBtIntent, REQUEST_ENBLE_BT)
+                }
+            }
+        }
+        return false
+    }
+
+    fun setDiscoverable(seconds:Int) {
+        val discoverableIntent: Intent = Intent(BluetoothAdapter.ACTION_REQUEST_DISCOVERABLE).apply {
+            putExtra(BluetoothAdapter.EXTRA_DISCOVERABLE_DURATION, 300)
+        }
+        appContext.startActivity(discoverableIntent)
+    }
+
+    fun cancelDiscovery():Unit {
+        scanner?.cancelDiscovery()
+    }
+
+    fun startDiscovery(callBack: BlueToothScanner.CallBack):Unit {
+        scanner?.startDiscovery(callBack)
+    }
+
+
+
+
 
 
 
