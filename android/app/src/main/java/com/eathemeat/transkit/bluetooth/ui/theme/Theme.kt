@@ -1,4 +1,4 @@
-package com.eathemeat.transkit.ui.main.theme
+package com.eathemeat.transkit.bluetooth.ui.theme
 
 import android.app.Activity
 import android.os.Build

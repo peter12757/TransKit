@@ -1,4 +1,4 @@
-package com.eathemeat.transkit.ui.main
+package com.eathemeat.transkit.main
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -7,7 +7,8 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
-import com.eathemeat.transkit.ui.main.theme.TransApplicationTheme
+import androidx.compose.ui.platform.LocalContext
+import com.eathemeat.transkit.main.ui.theme.TransApplicationTheme
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -19,7 +20,9 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    TransKitListScreen()
+                    TransKitListScreen() {
+                        it.transferto(this@MainActivity)
+                    }
                 }
             }
         }
