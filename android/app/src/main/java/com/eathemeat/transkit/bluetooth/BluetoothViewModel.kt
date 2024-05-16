@@ -1,8 +1,8 @@
 package com.eathemeat.transkit.bluetooth
 
-import android.bluetooth.BluetoothDevice
+import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
-import com.eathemeat.bluetools.BluetoothDeviceWrapper
+import com.eathemeat.bluetools.RemoteDevice
 
 /**
  * author:PeterX
@@ -10,5 +10,19 @@ import com.eathemeat.bluetools.BluetoothDeviceWrapper
  */
 class BluetoothViewModel:ViewModel() {
 
-    val devices = mutableListOf<BluetoothDeviceWrapper>()
+    val devices = mutableListOf<RemoteDevice>()
+
+    enum class ScreenState{
+        Discovery,
+        BLE,
+        AUDIO,
+
+    }
+
+    var screenState = mutableStateOf(ScreenState.Discovery)
+
+
+
+    fun test() {
+     }
 }
