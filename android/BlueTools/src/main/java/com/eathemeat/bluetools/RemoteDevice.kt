@@ -12,6 +12,8 @@ class RemoteDevice(val type:Type = Type.TYPE_UNKONWN,val name: String = "unknown
     enum class Type{
         TYPE_UNKONWN,
         TYPE_BLUETOOTH,
+        TYPE_BLE,
+        TYPE_BLEAUDIO
     }
 
 

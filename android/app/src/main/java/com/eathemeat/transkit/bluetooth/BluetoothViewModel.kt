@@ -10,7 +10,21 @@ import com.eathemeat.bluetools.RemoteDevice
  */
 class BluetoothViewModel:ViewModel() {
 
+    companion object {
+        enum class DeviceState(name:String) {
+            Idle("Idle"),
+            Connecting("Connecting"),
+            Connected("Connected"),
+            Error("Error"),
+
+        }
+    }
+
     val devices = mutableListOf<RemoteDevice>()
+
+    val currDevice = mutableStateOf<RemoteDevice>(RemoteDevice())
+
+    val deviceState = mutableStateOf(DeviceState.Idle)
 
     enum class ScreenState{
         Discovery,
