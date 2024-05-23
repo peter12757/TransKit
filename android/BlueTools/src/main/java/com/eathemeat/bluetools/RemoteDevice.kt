@@ -23,13 +23,17 @@ class RemoteDevice(val type:Type = Type.TYPE_UNKONWN,val name: String = "unknown
         return when(type) {
             Type.TYPE_BLUETOOTH -> bluetoothDevice!!.name?:let { "null" }
             Type.TYPE_UNKONWN -> "unknown"
+            Type.TYPE_BLE -> bluetoothDevice!!.name?:let { "null" }
+            Type.TYPE_BLEAUDIO -> bluetoothDevice!!.name?:let { "null" }
         }
     }
 
     fun id(): String {
         return when(type) {
-            Type.TYPE_BLUETOOTH -> bluetoothDevice!!.id?.toString()!!
+            Type.TYPE_BLUETOOTH -> bluetoothDevice!!.id.toString()
             Type.TYPE_UNKONWN -> "unknown"
+            Type.TYPE_BLE -> bluetoothDevice!!.id.toString()
+            Type.TYPE_BLEAUDIO -> bluetoothDevice!!.id.toString()
         }
     }
 }
