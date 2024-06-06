@@ -10,15 +10,16 @@ import androidx.compose.ui.Modifier
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewmodel.compose.viewModel
+import com.eathemeat.bluetools.BlueToothManager
 import com.eathemeat.transkit.bluetooth.ui.theme.TransApplicationTheme
 
 class BluetoothActivity : ComponentActivity() {
 
-    val viewModel:BluetoothViewModel = ViewModelProvider.AndroidViewModelFactory(this.application).create(BluetoothViewModel::class.java)
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
+        val viewModel:BluetoothViewModel = ViewModelProvider.AndroidViewModelFactory(this.application).create(BluetoothViewModel::class.java)
         setContent {
             TransApplicationTheme {
                 // A surface container using the 'background' color from the theme

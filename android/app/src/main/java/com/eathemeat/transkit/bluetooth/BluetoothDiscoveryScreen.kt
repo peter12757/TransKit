@@ -1,6 +1,8 @@
 package com.eathemeat.transkit.bluetooth
 
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
@@ -31,22 +33,30 @@ import com.eathemeat.transkit.bluetooth.ui.theme.TransApplicationTheme
 fun BluetoothDiscoveryScreen(
     modifier: Modifier = Modifier,
     viewModel: BluetoothViewModel = viewModel()
+
+
 ) {
     var showRefresh = remember {
         mutableStateOf(true)
     }
-    ConstraintLayout(modifier = Modifier.fillMaxWidth()) {
+
+    var  enableBluetooth = remember {
+       viewModel.enableBluetooth
+    }
+    ConstraintLayout(modifier = Modifier.fillMaxSize()) {
         val (title, switch, refresh, list) = createRefs()
         Text(text = "蓝牙", fontSize = 8.em, modifier = Modifier
             .constrainAs(title) {
                 start.linkTo(parent.start, margin = 10.dp)
-                centerVerticallyTo(parent)
             }
             .padding(5.dp))
 
-        Switch(checked = false, onCheckedChange = {}, modifier = Modifier
+        Switch(checked = enableBluetooth.value, onCheckedChange = {
+            viewModel.enableBluetooth(enableBluetooth.value)
+        }, modifier = Modifier
             .constrainAs(switch) {
-                centerVerticallyTo(parent)
+                top.linkTo(title.top)
+                bottom.linkTo(title.bottom)
                 if (showRefresh.value) {
                     end.linkTo(refresh.start, margin = 10.dp)
                 } else {
@@ -56,9 +66,12 @@ fun BluetoothDiscoveryScreen(
         if (showRefresh.value) {
             OutlinedButton(modifier = Modifier
                 .constrainAs(refresh) {
-                    centerVerticallyTo(parent)
+                    top.linkTo(title.top)
+                    bottom.linkTo(title.bottom)
                     end.linkTo(parent.end, margin = 10.dp)
-                }, onClick = { /*TODO*/ }) {
+                }, onClick = {
+                    viewModel.startDiscovery()
+                }) {
                 Icon(
                     painter = painterResource(id = R.drawable.icon_refresh),
                     contentDescription = "刷新",
