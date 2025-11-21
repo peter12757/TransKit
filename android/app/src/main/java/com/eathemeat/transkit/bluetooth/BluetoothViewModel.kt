@@ -1,5 +1,6 @@
 package com.eathemeat.transkit.bluetooth
 
+import android.app.Application
 import android.bluetooth.BluetoothDevice
 import android.util.Log
 import androidx.compose.runtime.MutableState
@@ -16,9 +17,11 @@ import com.eathemeat.bluetools.RemoteDevice
  *
  *
  */
-class BluetoothViewModel: AndroidViewModel() {
+class BluetoothViewModel(app:Application): AndroidViewModel(app) {
+    \
 
-    companion object {
+
+        companion object {
         enum class DeviceState(name:String) {
             Idle("Idle"),
             Connecting("Connecting"),
