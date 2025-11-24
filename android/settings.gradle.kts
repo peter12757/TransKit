@@ -22,3 +22,5 @@ dependencyResolutionManagement {
 rootProject.name = "TransDroid"
 include(":app")
 include(":Base")
+include(":ble")
+include(":Net")
