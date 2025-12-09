@@ -1,19 +1,14 @@
-package com.eathemeat.transdroid
+package com.eathemeat.transdroid.main
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.eathemeat.transdroid.ui.theme.TransDroidTheme
+import com.eathemeat.transdroid.main.ui.theme.TransDroidTheme
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -21,7 +16,7 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             TransDroidTheme {
-                    MainScreen(ViewModelProvider(MainActivity@this).get(MainModel::class.java))
+                MainScreen(ViewModelProvider(MainActivity@ this).get(MainModel::class.java))
 
             }
         }

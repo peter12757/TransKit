@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">TransDroid</string>
+    <string name="img_launcher">launcher_image</string>
 </resources>

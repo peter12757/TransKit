@@ -1,4 +1,4 @@
-package com.eathemeat.transdroid.ui.theme
+package com.eathemeat.transdroid.main.ui.theme
 
 import androidx.compose.ui.graphics.Color
 
