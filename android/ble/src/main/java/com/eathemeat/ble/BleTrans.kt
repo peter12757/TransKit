@@ -3,8 +3,6 @@ package com.eathemeat.ble
 import android.Manifest
 import android.app.Activity
 import android.bluetooth.BluetoothAdapter
-import android.bluetooth.BluetoothAdapter.LeScanCallback
-import android.bluetooth.BluetoothDevice
 import android.bluetooth.BluetoothManager
 import android.bluetooth.le.ScanCallback
 import android.bluetooth.le.ScanResult
@@ -12,8 +10,7 @@ import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Build
-import android.util.Log
-import androidx.annotation.RequiresPermission
+import com.eathemeat.base.util.Logger
 
 
 class BleTrans(val ctx: Context) {
@@ -62,31 +59,40 @@ class BleTrans(val ctx: Context) {
     }
 
 
-    private var mDevice: BluetoothDevice? = null
-    val mLeScanCallback: ScanCallback = LeScanCallback @androidx.annotation.RequiresPermission(
-        android.Manifest.permission.BLUETOOTH_CONNECT
-    ) { device, rssi, scanRecord ->
-        Log.d(TAG, "onLeScan:  " + device.name + " : " + rssi)
-        if (device.name != null) {
-            deviceName.setText(device.name)
-            if (device.name == "test_ble") { // 或者比较 mac 地址
-                mDevice = device
-                mBluetoothAdapter.stopLeScan(mLeScanCallback)
-            }
-        }
-    }
+//    private var mDevice: BluetoothDevice? = null
+//    val mLeScanCallback: ScanCallback = LeScanCallback @androidx.annotation.RequiresPermission(
+//        android.Manifest.permission.BLUETOOTH_CONNECT
+//    ) { device, rssi, scanRecord ->
+//        Log.d(TAG, "onLeScan:  " + device.name + " : " + rssi)
+//        if (device.name != null) {
+//            deviceName.setText(device.name)
+//            if (device.name == "test_ble") { // 或者比较 mac 地址
+//                mDevice = device
+//                mBluetoothAdapter.stopLeScan(mLeScanCallback)
+//            }
+//        }
+//    }
 
     val mScanCallBack: ScanCallback = object:ScanCallback() {
         override fun onScanFailed(errorCode: Int) {
-            super.onScanFailed(errorCode)
+            Logger.d(TAG,"errorCode$errorCode")
+
         }
 
         override fun onBatchScanResults(results: List<ScanResult?>?) {
-            super.onBatchScanResults(results)
+            Logger.d(TAG,"results${results}")
         }
 
         override fun onScanResult(callbackType: Int, result: ScanResult?) {
-            if (result)
+            Logger.d(TAG,"callbackType:$callbackType, result:${result}")
+            when (result) {
+                null -> {
+
+                }
+                else ->{
+
+                }
+            }
         }
     }
 
