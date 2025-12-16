@@ -14,14 +14,20 @@ import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.eathemeat.transdroid.R
 import com.eathemeat.transdroid.main.MainModel
+import com.eathemeat.transdroid.main.ui.screen.home.HomeSate
 import com.eathemeat.transdroid.main.ui.theme.TransDroidTheme
 
 
 @Composable
-fun LaucnherScreen(modifier: Modifier = Modifier,mainModel: MainModel = viewModel()) {
+fun LauncherScreen(modifier: Modifier = Modifier, mainModel: MainModel = viewModel()) {
 
     ConstraintLayout() {
-        val time = mainModel.launcherTime.collectAsState()
+        val state:LauncherState = (mainModel.stateManager.getKeybyTag(LauncherState.tag()) as LauncherState)
+        val time = state.launcherTime.collectAsState()
+
+        if (time.value == 0) {
+            mainModel.stateManager.transfer2State(HomeSate.tag())
+        }
         Image(painter = painterResource(id = R.drawable.img_launcher), contentDescription = stringResource(R.string.img_launcher),modifier= Modifier.constrainAs(createRef()){
             top.linkTo(parent.top)
             start.linkTo(parent.start)
@@ -29,24 +35,20 @@ fun LaucnherScreen(modifier: Modifier = Modifier,mainModel: MainModel = viewMode
             end.linkTo(parent.end)
         })
 
+
         Text("${time.value/1000} S", color = Color.White, modifier = Modifier.constrainAs(createRef()) {
             top.linkTo(parent.top, margin = 10.dp)
             end.linkTo(parent.end, margin = 10.dp)
-
         })
+        state.startTime()
     }
-
-
-
-
-
 }
 
 @Preview(showBackground = true)
 @Composable
-fun LaucnherScreenPreview() {
+fun LauncherScreenPreview() {
     TransDroidTheme {
-        LaucnherScreen()
+        LauncherScreen()
 
     }
 }
