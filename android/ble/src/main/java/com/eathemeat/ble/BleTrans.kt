@@ -11,6 +11,8 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Build
 import com.eathemeat.base.util.Logger
+import androidx.annotation.RequiresPermission
+import androidx.core.content.ContextCompat
 
 
 class BleTrans(val ctx: Context) {
@@ -51,11 +53,18 @@ class BleTrans(val ctx: Context) {
         return true
     }
 
+
+    @RequiresPermission(Manifest.permission.BLUETOOTH_CONNECT)
     fun enableBluetooth() {
-        if (!mBluetoothAdapter.isEnabled) {
+        if (!mBluetoothAdapter.isEnabled || checkBluePermisssion()) {
             var enableBtIntent = Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE)
             ctx.startActivity(enableBtIntent)
         }
+    }
+
+    fun checkBluePermisssion(): Boolean {
+        return ContextCompat.checkSelfPermission(ctx, android.Manifest.permission.BLUETOOTH_CONNECT) == PackageManager.PERMISSION_GRANTED
+            || ContextCompat.checkSelfPermission(ctx, android.Manifest.permission.BLUETOOTH) == PackageManager.PERMISSION_GRANTED
     }
 
 
