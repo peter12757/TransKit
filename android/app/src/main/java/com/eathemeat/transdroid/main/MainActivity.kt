@@ -16,7 +16,7 @@ import com.eathemeat.transdroid.main.ui.theme.TransDroidTheme
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        Logger.d()
+        Logger.d("1231231")
         enableEdgeToEdge()
         setContent {
             TransDroidTheme {

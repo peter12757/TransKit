@@ -1,23 +1,25 @@
 package com.eathemeat.base.util
 
 import android.util.Log
+import kotlin.math.log
 
 object Logger {
 
+    val logName:String = this::class.java.simpleName
 
     fun d(msg:String="") {
         val stack = Thread.currentThread().stackTrace
         var isSelf = false
         for (element in stack) {
             val name =getSimpleClassName(element.className)
-            if (isSelf) {
-                Log.e("${name}","${name}::${element.methodName}::${element.lineNumber} $msg")
-                break
-            }else if (name == this::class.simpleName) {
+            if (name.equals(logName)) {
 //                Log.e("${name}","${name}::${element.methodName}::${element.lineNumber}"+"111111")
                 isSelf = true
-            }else {
-//                Log.e("${name}","${name}::${element.methodName}::${element.lineNumber}"+"222222")
+            } else if (isSelf) {
+                Log.e("${name}","${name}::${element.methodName}::${element.lineNumber} $msg")
+                break
+            } else {
+                //                Log.e("${name}","${name}::${element.methodName}::${element.lineNumber}"+"222222")
             }
         }
     }
