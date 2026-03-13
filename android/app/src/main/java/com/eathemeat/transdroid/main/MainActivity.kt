@@ -20,7 +20,7 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             TransDroidTheme {
-                MainScreen(ViewModelProvider(MainActivity@ this).get(MainModel::class.java))
+                MainScreen(viewModel())
             }
         }
     }
@@ -30,7 +30,6 @@ class MainActivity : ComponentActivity() {
 fun MainScreen(viewModel:MainModel,modifier: Modifier = Modifier) {
     val state = viewModel.curState.collectAsState().value
     viewModel.screen(state)
-
 }
 
 @Preview(showBackground = true)

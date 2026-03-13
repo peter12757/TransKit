@@ -23,7 +23,7 @@ class MainModel: ViewModel() {
     }
 
     fun screen(state: IState): @Composable (() -> Unit)? {
-        return stateManager.get(state)
+        return stateManager[state]
     }
 
 

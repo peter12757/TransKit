@@ -33,10 +33,11 @@ open class StateManager : HashMap<IState, @Composable (() -> Unit)>() {
         return super.put(key, value)
     }
 
-    override fun putAll(m: Map<out IState, out @Composable (() -> Unit)>) {
+    override fun putAll(m: Map<out IState, @Composable (() -> Unit)>) {
         m.forEach { key,value ->
             put(key,value)
         }
+        super.putAll(m)
     }
 
     override fun remove(key: IState): @Composable (() -> Unit)? {
