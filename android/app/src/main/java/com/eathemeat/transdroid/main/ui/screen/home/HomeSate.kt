@@ -1,5 +1,7 @@
 package com.eathemeat.transdroid.main.ui.screen.home
 
+import android.os.Message
+import android.util.Log
 import com.eathemeat.base.util.Logger
 import com.eathemeat.transdroid.main.ui.IState
 
@@ -11,7 +13,7 @@ class HomeSate: IState {
         }
     }
 
-    override fun tag(): String {
+    override fun TAG(): String {
         return Companion.tag()
     }
 
@@ -21,5 +23,9 @@ class HomeSate: IState {
 
     override fun exit() {
         Logger.d()
+    }
+
+    override fun handleMsg(msg: Message) {
+        Log.d(TAG(), "handleMsg: ")
     }
 }

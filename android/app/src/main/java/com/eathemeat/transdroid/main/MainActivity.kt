@@ -11,6 +11,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.eathemeat.base.util.Logger
+import com.eathemeat.transdroid.main.ui.screen.launcher.LauncherScreen
 import com.eathemeat.transdroid.main.ui.theme.TransDroidTheme
 
 class MainActivity : ComponentActivity() {
@@ -28,8 +29,7 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun MainScreen(viewModel:MainModel,modifier: Modifier = Modifier) {
-    val state = viewModel.curState.collectAsState().value
-    viewModel.screen(state)
+    LauncherScreen(modifier, mainModel = viewModel())
 }
 
 @Preview(showBackground = true)

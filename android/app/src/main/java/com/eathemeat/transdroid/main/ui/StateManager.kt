@@ -29,7 +29,7 @@ open class StateManager : HashMap<IState, @Composable (() -> Unit)>() {
     }
 
     override fun put(key: IState, value: @Composable (() -> Unit)): @Composable (() -> Unit)? {
-        tagMap.put(key.tag(),key)
+        tagMap.put(key.TAG(),key)
         return super.put(key, value)
     }
 
@@ -41,12 +41,12 @@ open class StateManager : HashMap<IState, @Composable (() -> Unit)>() {
     }
 
     override fun remove(key: IState): @Composable (() -> Unit)? {
-        tagMap.remove(key.tag())
+        tagMap.remove(key.TAG())
         return super.remove(key)
     }
 
     override fun remove(key: IState, value: @Composable (() -> Unit)): Boolean {
-        tagMap.remove(key.tag())
+        tagMap.remove(key.TAG())
         return super.remove(key, value)
     }
 
@@ -54,7 +54,7 @@ open class StateManager : HashMap<IState, @Composable (() -> Unit)>() {
         key: IState,
         value: @Composable (() -> Unit)
     ): @Composable (() -> Unit)? {
-        tagMap.remove(key.tag())
+        tagMap.remove(key.TAG())
         return super.putIfAbsent(key, value)
     }
 

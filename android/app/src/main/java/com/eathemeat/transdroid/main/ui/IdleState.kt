@@ -5,7 +5,7 @@ import com.eathemeat.base.util.Logger
 class IdleState : IState{
 
     val TAG = "IdleState"
-    override fun tag(): String {
+    override fun TAG(): String {
         return "IdleState"
     }
 

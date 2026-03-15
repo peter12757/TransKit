@@ -1,8 +1,14 @@
 package com.eathemeat.transdroid.main.ui
 
+import android.os.Message
+
 interface IState {
 
-    fun tag():String
+    fun TAG():String
+
+
     fun enter()
     fun exit()
+
+    fun handleMsg(msg: Message)
 }

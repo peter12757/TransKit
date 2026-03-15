@@ -1,6 +1,7 @@
 package com.eathemeat.transdroid.main.ui.screen.launcher
 
 import android.annotation.SuppressLint
+import android.os.Message
 import com.eathemeat.transdroid.main.ui.IState
 import com.eathemeat.transdroid.main.util.ChoreThread
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -38,7 +39,7 @@ class LauncherState : IState {
     }
 
 
-    override fun tag(): String {
+    override fun TAG(): String {
         return Companion.tag()
     }
 
@@ -49,6 +50,10 @@ class LauncherState : IState {
 
     override fun exit() {
         showTime = def_ShoweTime
+    }
+
+    override fun handleMsg(msg: Message) {
+
     }
 
 
