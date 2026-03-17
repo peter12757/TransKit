@@ -26,7 +26,7 @@ class MainModel: ViewModel() {
         return stateManager[state]
     }
 
-    val
+//    val homeState
 
 
 }

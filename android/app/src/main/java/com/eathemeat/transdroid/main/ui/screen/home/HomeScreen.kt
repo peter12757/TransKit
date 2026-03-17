@@ -17,6 +17,7 @@ fun HomeScreen(modifier: Modifier = Modifier, mainModel: MainModel = viewModel()
     val state: HomeSate = (mainModel.stateManager.getKeybyTag(LauncherState.tag()) as HomeSate)
     state
     ConstraintLayout() {
+
         LazyColumn() {
             items(mainModel)
         }
