@@ -6,6 +6,24 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.eathemeat.transdroid.main.MainModel
 
+
+//ModalNavigationDrawer(
+//drawerContent = {
+//    ModalDrawerSheet {
+//        Text("Drawer title", modifier = Modifier.padding(16.dp))
+//        HorizontalDivider()
+//        NavigationDrawerItem(
+//            label = { Text(text = "Drawer Item") },
+//            selected = false,
+//            onClick = { /*TODO*/ }
+//        )
+//        // ...other drawer items
+//    }
+//}
+//) {
+//    // Screen content
+//}
+
 @Composable
 fun NavDrawerScreen(modifier: Modifier = Modifier, mainModel: MainModel = viewModel()) {
 
