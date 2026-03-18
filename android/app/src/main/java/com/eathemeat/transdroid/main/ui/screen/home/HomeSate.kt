@@ -3,7 +3,6 @@ package com.eathemeat.transdroid.main.ui.screen.home
 import android.os.Message
 import android.util.Log
 import com.eathemeat.base.util.Logger
-import com.eathemeat.transdroid.main.ui.IState
 
 class HomeSate: IState {
 

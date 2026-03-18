@@ -1,7 +1,5 @@
 package com.eathemeat.transdroid.main.ui.screen.ble
 
-import com.eathemeat.transdroid.main.ui.IState
-
 class BleState: IState {
     override fun TAG(): String {
         TODO("Not yet implemented")
