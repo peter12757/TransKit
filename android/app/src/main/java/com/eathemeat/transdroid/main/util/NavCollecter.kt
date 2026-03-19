@@ -1,5 +1,9 @@
 package com.eathemeat.transdroid.main.util
 
-class NavCollecter {
+abstract class NavCollecter<List,T> {
+
+
+
+
 
 }

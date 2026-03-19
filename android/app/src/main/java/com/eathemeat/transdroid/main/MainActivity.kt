@@ -36,8 +36,7 @@ fun MainScreen(viewModel:MainModel,modifier: Modifier = Modifier) {
         composable("launcher") {
             LauncherScreen(modifier, mainModel = viewModel(),navController)
         }
-        composable("home") { HomeScreen() }
-
+        composable("home") { HomeScreen(modifier,mainModel = viewModel(),navController) }
     }
 
 }
