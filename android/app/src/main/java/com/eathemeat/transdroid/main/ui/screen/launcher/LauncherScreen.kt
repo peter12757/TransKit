@@ -23,7 +23,6 @@ import com.eathemeat.transdroid.main.ui.theme.TransDroidTheme
 fun LauncherScreen(
     modifier: Modifier = Modifier,
     mainModel: MainModel = viewModel(),
-    navController: NavHostController
 ) {
 
     ConstraintLayout() {

@@ -34,9 +34,9 @@ fun MainScreen(viewModel:MainModel,modifier: Modifier = Modifier) {
     val navController = rememberNavController()
     NavHost(navController,startDestination ="launcher") {
         composable("launcher") {
-            LauncherScreen(modifier, mainModel = viewModel(),navController)
+            LauncherScreen(modifier, mainModel = viewModel())
         }
-        composable("home") { HomeScreen(modifier,mainModel = viewModel(),navController) }
+        composable("home") { HomeScreen(modifier,mainModel = viewModel()) }
     }
 
 }
