@@ -1,4 +1,4 @@
-package com.eathemeat.transdroid.main.ui.screen.launcher
+package com.eathemeat.transdroid.main.ui.screen.advertisement
 
 import androidx.compose.foundation.Image
 import androidx.compose.material3.Text
@@ -12,7 +12,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.lifecycle.viewmodel.compose.viewModel
-import androidx.navigation.NavHostController
+import androidx.navigation.NavController
 import com.eathemeat.base.util.Logger
 import com.eathemeat.transdroid.R
 import com.eathemeat.transdroid.main.MainModel
@@ -20,18 +20,19 @@ import com.eathemeat.transdroid.main.ui.theme.TransDroidTheme
 
 
 @Composable
-fun LauncherScreen(
+fun AdScreen(
     modifier: Modifier = Modifier,
+    onFinish: ()-> Unit,
     mainModel: MainModel = viewModel(),
 ) {
 
     ConstraintLayout() {
-        val state:LauncherState = mainModel.launcherState
+        val state:AdState = mainModel.launcherState
         val time = state.launcherTime.collectAsState()
 
         if (time.value == 0) {
             Logger.d("trans to HomeScreen")
-            navController.navigate()
+            onFinish()
         }
         Image(painter = painterResource(id = R.drawable.img_launcher), contentDescription = stringResource(R.string.img_launcher),modifier= Modifier.constrainAs(createRef()){
             top.linkTo(parent.top)
@@ -51,9 +52,11 @@ fun LauncherScreen(
 
 @Preview(showBackground = true)
 @Composable
-fun LauncherScreenPreview() {
+fun AdScreenPreview() {
     TransDroidTheme {
-        LauncherScreen(navController = navController)
+        AdScreen(onFinish = {
+            Logger.d("AdScreenPreview")
+        })
 
     }
 }

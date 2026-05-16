@@ -1,11 +1,10 @@
-package com.eathemeat.transdroid.main.ui.screen.launcher
+package com.eathemeat.transdroid.main.ui.screen.advertisement
 
-import android.annotation.SuppressLint
 import android.os.Message
 import com.eathemeat.transdroid.main.util.ChoreThread
 import kotlinx.coroutines.flow.MutableStateFlow
 
-class LauncherState  {
+class AdState  {
 
     companion object {
         fun tag(): String {
