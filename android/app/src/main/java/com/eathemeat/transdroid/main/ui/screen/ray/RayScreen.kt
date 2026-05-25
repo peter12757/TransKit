@@ -1,17 +1,14 @@
-package com.eathemeat.transdroid.main.ui.screen.ble
+package com.eathemeat.transdroid.main.ui.screen.ray
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.lifecycle.viewmodel.compose.viewModel
-import androidx.navigation.NavController
-import com.eathemeat.base.util.Logger
 import com.eathemeat.transdroid.main.MainModel
-import com.eathemeat.transdroid.main.ui.screen.advertisement.AdScreen
 import com.eathemeat.transdroid.main.ui.theme.TransDroidTheme
 
 @Composable
-fun BleScreen(
+fun RayScreen(
     modifier: Modifier = Modifier,
     mainModel: MainModel = viewModel(),
 ) {
@@ -20,9 +17,9 @@ fun BleScreen(
 
 @Preview(showBackground = true)
 @Composable
-fun BleScreenPreview() {
+fun RayScreenPreview() {
     TransDroidTheme {
-        BleScreen()
+        RayScreen()
 
     }
 }
