@@ -34,7 +34,7 @@ fun AdScreen(
             Logger.d("trans to HomeScreen")
             onFinish()
         }
-        Image(painter = painterResource(id = R.drawable.img_launcher), contentDescription = stringResource(R.string.img_launcher),modifier= Modifier.constrainAs(createRef()){
+        Image(painter = painterResource(id = R.drawable.img_ad), contentDescription = stringResource(R.string.img_launcher),modifier= Modifier.constrainAs(createRef()){
             top.linkTo(parent.top)
             start.linkTo(parent.start)
             bottom.linkTo(parent.bottom)
